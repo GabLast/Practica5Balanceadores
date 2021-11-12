@@ -1,0 +1,47 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'edu.pucmm'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.springframework.session:spring-session-core'
+    //módulo para trabajar con Hazelcast.
+    //este modulo no importa la clase MapAttributeConfig por alguna razon, por lo que no funciona
+    //implementation 'org.springframework.session:spring-session-hazelcast'
+    implementation 'com.hazelcast:hazelcast:3.12.6'
+    implementation 'org.springframework.session:spring-session-hazelcast:2.2.2.RELEASE'
+
+    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.h2database:h2:1.4.200'
+
+    //Libreria para JWT
+    implementation 'io.jsonwebtoken:jjwt-api:0.10.5'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.10.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.10.5'
+
+    //library to split ez
+    //https://stackoverflow.com/questions/31153753/split-string-into-key-value-pairs
+    implementation 'com.google.guava:guava:30.1.1-jre'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     environment:
-      - PORT=8080
+      - server.port=8080
     ports: #puertos que estaran expuestos.
       - "8080:8080"
     networks: #red para conectar los equipos.
@@ -22,7 +22,7 @@ services:
     env_file:
       - .env
     environment:
-      - PORT=8081
+      - server.port=8081
     ports: #puertos que estaran expuestos.
       - "8081:8081"
     networks: #red para conectar los equipos.
@@ -30,14 +30,14 @@ services:
     volumes:
       - mi-volumen-compose:/tmp/
     depends_on: #indica que primero debe subir los servicios indicados.
-      - base-datos-app-web
+      - app-web
 
   app-web-3:
     build: .
     env_file:
       - .env
     environment:
-      - PORT=8082
+      - server.port=8082
     ports: #puertos que estaran expuestos.
       - "8082:8082"
     networks: #red para conectar los equipos.
@@ -45,7 +45,7 @@ services:
     volumes:
       - mi-volumen-compose:/tmp/
     depends_on: #indica que primero debe subir los servicios indicados.
-      - base-datos-app-web
+      - app-web-2
 
   base-datos-app-web:
     image: mysql:5.7.26

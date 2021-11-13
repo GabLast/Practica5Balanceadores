@@ -4,6 +4,7 @@ package edu.pucmm.practica2webadvanced;
 import edu.pucmm.practica2webadvanced.Repositories.UserRepository;
 import edu.pucmm.practica2webadvanced.Services.DBData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,9 @@ public class Practica2WebAdvancedApplication implements CommandLineRunner {
 
     @Autowired
     private Environment environment;
+
+    @Value("${server.port}")
+    private static int port;
 
     public static void main(String[] args) {
 //        SpringApplication.run(Practica2WebAdvancedApplication.class, args);
@@ -29,7 +33,7 @@ public class Practica2WebAdvancedApplication implements CommandLineRunner {
 //        System.out.println("====== FIN Beans Registrados =====");
 
         UserRepository userRepository = (UserRepository) applicationContext.getBean("userRepository");
-        if(userRepository.findAll().isEmpty()) {
+        if(userRepository.findAll().isEmpty() && port == 8080) {
             DBData dbData = (DBData) applicationContext.getBean("DBData");
             dbData.initDB();
         }

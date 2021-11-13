@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     ports: #puertos que estaran expuestos.
-      - ${PUERTO_APP}:8080
+      - "8080:8080"
     networks: #red para conectar los equipos.
       - red-app
     volumes:
@@ -20,7 +20,7 @@ services:
     env_file:
       - .env
     ports: #puertos que estaran expuestos.
-      - 8081:8081
+      - "8081:8081"
     networks: #red para conectar los equipos.
       - red-app
     volumes:
@@ -28,13 +28,12 @@ services:
     depends_on: #indica que primero debe subir los servicios indicados.
       - base-datos-app-web
 
-
   app-web-3:
     build: .
     env_file:
       - .env
     ports: #puertos que estaran expuestos.
-      - 8082:8082
+      - "8082:8082"
     networks: #red para conectar los equipos.
       - red-app
     volumes:
@@ -45,7 +44,7 @@ services:
   base-datos-app-web:
     image: mysql:5.7.26
     ports:
-      - ${PUERTO_DB}:3306
+      - "3306:3306"
     env_file:
       - .env
     environment:
@@ -57,18 +56,6 @@ services:
     networks:
       - red-app
 
-  phpmyadmin: # Cliente phpmyadmin para
-    image: phpmyadmin:5.1.1
-    env_file:
-      - .env
-    ports:
-      - ${PUERTO_PHPMYADMIN}:80
-    environment:
-      - PMA_ARBITRARY=1
-    networks:
-      - red-app
-    depends_on: #indica que primero debe subir los servicios indicados.
-      - base-datos-app-web
 
 networks: #bloque para las redes
   red-app:   #indicando la red definida

@@ -42,7 +42,7 @@ public class JWTAuthorization extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
             }else{
                 response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                ((HttpServletResponse) response).sendError(HttpServletResponse.SC_FORBIDDEN, "Sin permisos");
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Sin permisos");
                 return;
             }
 
@@ -68,8 +68,6 @@ public class JWTAuthorization extends OncePerRequestFilter {
 
     private boolean existeJWTToken(HttpServletRequest request, HttpServletResponse res) {
         String authenticationHeader = request.getHeader(HEADER);
-        if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX))
-            return false;
-        return true;
+        return authenticationHeader != null && authenticationHeader.startsWith(PREFIX);
     }
 }

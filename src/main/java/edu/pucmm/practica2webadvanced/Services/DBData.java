@@ -24,7 +24,7 @@ public class DBData {
     @Autowired
     private RolServices rolServices;
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public void initDB()
     {

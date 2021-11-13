@@ -20,11 +20,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
     implementation 'org.springframework.session:spring-session-core'
+
     //módulo para trabajar con Hazelcast.
     //este modulo no importa la clase MapAttributeConfig por alguna razon, por lo que no funciona
-    //implementation 'org.springframework.session:spring-session-hazelcast'
-    implementation 'com.hazelcast:hazelcast:3.12.6'
-    implementation 'org.springframework.session:spring-session-hazelcast:2.2.2.RELEASE'
+    implementation 'org.springframework.session:spring-session-hazelcast'
+    implementation 'com.hazelcast:hazelcast:4.2.2'
+//    implementation 'org.springframework.session:spring-session-hazelcast:2.2.2.RELEASE'
 
     runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'com.h2database:h2:1.4.200'

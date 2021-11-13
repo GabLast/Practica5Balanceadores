@@ -24,6 +24,7 @@ ENV DB_HOST=base-datos-app-web
 ENV DB_PORT=3306
 ENV DB_USER=root
 ENV DB_PASSWORD=12345678
+ENV server.port=8080
 # ENV spring.datasource.url='jdbc:mysql://192.168.77.10:3306/dbname'
 
 

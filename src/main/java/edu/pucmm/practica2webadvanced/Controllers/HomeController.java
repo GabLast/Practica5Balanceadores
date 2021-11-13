@@ -1,19 +1,11 @@
 package edu.pucmm.practica2webadvanced.Controllers;
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.MapAttributeConfig;
-import com.hazelcast.config.MapIndexConfig;
-import com.hazelcast.core.Hazelcast;
-import com.hazelcast.core.HazelcastInstance;
 import edu.pucmm.practica2webadvanced.Models.User;
 import edu.pucmm.practica2webadvanced.Services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
-import org.springframework.session.hazelcast.HazelcastIndexedSessionRepository;
-import org.springframework.session.hazelcast.PrincipalNameExtractor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +25,6 @@ public class HomeController {
 
     @Value("${server.port}")
     private int port;
-
 
     @GetMapping("/")
     public String index() { return "redirect:/home"; }
@@ -80,23 +71,6 @@ public class HomeController {
 
 
         return "/Home";
-    }
-
-    @Bean
-    public HazelcastInstance hazelcastInstance() {
-        //Configuración basica.
-        MapAttributeConfig attributeConfig = new MapAttributeConfig()
-                .setName(HazelcastIndexedSessionRepository.PRINCIPAL_NAME_ATTRIBUTE)
-                .setExtractor(PrincipalNameExtractor.class.getName());
-
-        Config config = new Config();
-
-        config.getMapConfig(HazelcastIndexedSessionRepository.DEFAULT_SESSION_MAP_NAME)
-                .addMapAttributeConfig(attributeConfig)
-                .addMapIndexConfig(new MapIndexConfig(
-                        HazelcastIndexedSessionRepository.PRINCIPAL_NAME_ATTRIBUTE, false));
-
-        return Hazelcast.newHazelcastInstance(config);
     }
 
 }

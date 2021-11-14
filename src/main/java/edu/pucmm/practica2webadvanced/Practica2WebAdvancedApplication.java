@@ -22,6 +22,18 @@ public class Practica2WebAdvancedApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
 //        SpringApplication.run(Practica2WebAdvancedApplication.class, args);
+
+        if(port != 8080){
+            try
+            {
+                Thread.sleep(10 * 1000);
+                System.out.println("Delay to slow down the start up...");
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+        }
         ApplicationContext applicationContext = SpringApplication.run(Practica2WebAdvancedApplication.class, args);
 
 

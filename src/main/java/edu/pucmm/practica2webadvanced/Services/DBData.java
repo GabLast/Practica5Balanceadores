@@ -27,24 +27,13 @@ public class DBData {
     @Value("${server.port}")
     private int port;
 
+
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public void initDB()
     {
-        //roles
-        if(port != 8080){
-            try
-            {
-                Thread.sleep(10 * 1000);
-                System.out.println("Delay to slow down the start up...");
-            }
-            catch(InterruptedException ex)
-            {
-                Thread.currentThread().interrupt();
-            }
-        }
-
         if(port == 8080){
+            //roles
             Rol admin = new Rol("ROLE_ADMIN");
             Rol user = new Rol("ROLE_USER");
             rolServices.insert(admin);

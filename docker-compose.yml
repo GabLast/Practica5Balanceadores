@@ -32,20 +32,20 @@ services:
     depends_on: #indica que primero debe subir los servicios indicados.
       - app-web
 
-#  app-web-3:
-#    build: .
-#    env_file:
-#      - .env
-#    environment:
-#      - server.port=8082
-#    ports: #puertos que estaran expuestos.
-#      - "8082:8082"
-#    networks: #red para conectar los equipos.
-#      - red-app
-#    volumes:
-#      - mi-volumen-compose:/tmp/
-#    depends_on: #indica que primero debe subir los servicios indicados.
-#      - app-web-2
+  app-web-3:
+    build: .
+    env_file:
+      - .env
+    environment:
+      - server.port=8082
+    ports: #puertos que estaran expuestos.
+      - "8082:8082"
+    networks: #red para conectar los equipos.
+      - red-app
+    volumes:
+      - mi-volumen-compose:/tmp/
+    depends_on: #indica que primero debe subir los servicios indicados.
+      - app-web-2
 
   base-datos-app-web:
     image: mysql:5.7.26

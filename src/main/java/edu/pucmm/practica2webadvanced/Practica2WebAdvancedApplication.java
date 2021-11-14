@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 
@@ -17,11 +18,23 @@ public class Practica2WebAdvancedApplication implements CommandLineRunner {
     @Autowired
     private Environment environment;
 
+    @Value("${server.port}")
+    static int port;
 
     public static void main(String[] args) {
 //        SpringApplication.run(Practica2WebAdvancedApplication.class, args);
 
-
+        if(port != 8080){
+            try
+            {
+                System.out.println("Delay to slow down the start up...");
+                Thread.sleep(10 * 1000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+        }
         ApplicationContext applicationContext = SpringApplication.run(Practica2WebAdvancedApplication.class, args);
 
 
